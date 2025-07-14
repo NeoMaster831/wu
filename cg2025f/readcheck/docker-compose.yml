@@ -1,0 +1,7 @@
+services:
+  robotsig:
+    build:
+      context: ./
+    ports:
+       - "48085:48085"
+    restart: always

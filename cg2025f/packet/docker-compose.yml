@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  packet:
+    network_mode: host
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
