@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package secret;
+
+service SecretService {
+  rpc Flag (FlagRequest) returns (FlagResponse) {}
+}
+
+message FlagRequest {
+  string token = 1;
+  string hidden = 2;
+}
+
+message FlagResponse {
+  int32 status = 1;
+  string flag = 2;
+}
