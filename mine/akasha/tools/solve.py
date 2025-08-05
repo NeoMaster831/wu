@@ -1,0 +1,4 @@
+backdoor_payload = "12c5425bab496041bb8eaf023a83ac020000000000c9c386"
+#str_low_payload = "cd182cbd757fcbcc02cdbe7795df4ab600000000001c3c71"
+str_high_payload = "ccc33b54f2cbb9485600e4463ddce2a700000000013719e8"
+str_low_payload = "27159d45f84c03a6d41b4c46bc9d2a1700000000007e45cc"

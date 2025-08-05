@@ -1,0 +1,20 @@
+A binary-to-text encoding is encoding of data in plain text. More precisely, it is an encoding of binary data in a sequence of printable characters. These encodings are necessary for transmission of data when the communication channel does not allow binary data (such as email or NNTP) or is not 8-bit clean. PGP documentation (RFC 4880) uses the term "ASCII armor" for binary-to-text encoding when referring to Base64.
+
+Overview
+The basic need for a binary-to-text encoding comes from a need to communicate arbitrary binary data over preexisting communications protocols that were designed to carry only English language human-readable text. Those communication protocols may only be 7-bit safe (and within that avoid certain ASCII control codes), and may require line breaks at certain maximum intervals, and may not maintain whitespace. Thus, only the 94 printable ASCII characters are "safe" to use to convey data.
+
+Description
+The ASCII text-encoding standard uses 7 bits to encode characters. With this it is possible to encode 128 (i.e. 27) unique values (0-127) to represent the alphabetic, numeric, and punctuation characters commonly used in English, plus a selection of Control characters which do not represent printable characters. For example, the capital letter A is represented in 7 bits as 100 00012, 0x41 (1018) , the numeral 2 is 011 00102 0x32 (628), the character } is 111 11012 0x7D (1758), and the Control character RETURN is 000 11012 0x0D (158).
+
+In contrast, most computers store data in memory organized in eight-bit bytes. Files that contain machine-executable code and non-textual data typically contain all 256 possible eight-bit byte values. Many computer programs came to rely on this distinction between seven-bit text and eight-bit binary data, and would not function properly if non-ASCII characters appeared in data that was expected to include only ASCII text. For example, if the value of the eighth bit is not preserved, the program might interpret a byte value above 127 as a flag telling it to perform some function.
+
+It is often desirable, however, to be able to send non-textual data through text-based systems, such as when one might attach an image file to an e-mail message. To accomplish this, the data is encoded in some way, such that eight-bit data is encoded into seven-bit ASCII characters (generally using only alphanumeric and punctuation characters-the ASCII printable characters). Upon safe arrival at its destination, it is then decoded back to its eight-bit form. This process is referred to as binary to text encoding. Many programs perform this conversion to allow for data-transport, such as PGP and GNU Privacy Guard.
+
+Encoding plain text
+Binary-to-text encoding methods are also used as a mechanism for encoding plain text. For example:
+
+Some systems have a more limited character set they can handle; not only are they not 8-bit clean, some cannot even handle every printable ASCII character.
+Other systems have limits on the number of characters that may appear between line breaks, such as the "1000 characters per line" limit of some Simple Mail Transfer Protocol software, as allowed by RFC 2821.
+Still others add headers or trailers to the text.
+A few poorly-regarded but still-used protocols use in-band signaling, causing confusion if specific patterns appear in the message. The best-known is the string "From " (including trailing space) at the beginning of a line, used to separate mail messages in the mbox file format.
+By using a binary-to-text encoding on messages that are already plain text, then decoding on the other end, one can make such systems appear to be completely transparent. This is sometimes referred to as 'ASCII armoring'. For example, the ViewState component of ASP.NET uses base64 encoding to safely transmit text via HTTP POST, in order to avoid delimiter collision.
